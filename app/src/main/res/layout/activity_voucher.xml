@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0F7E0">
+
+<!--    &lt;!&ndash; Thanh tiêu đề &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/header"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="56dp"-->
+<!--        android:background="#E0F7E0"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingHorizontal="16dp"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btn_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@android:drawable/ic_menu_revert"-->
+<!--            android:contentDescription="Back"-->
+<!--            android:layout_marginEnd="16dp" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Quản Lý Vouchers"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:gravity="center" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_add_voucher"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="36dp"-->
+<!--            android:text="Thêm"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:background="#4CAF50"-->
+<!--            android:textSize="14sp" />-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; Thanh tìm kiếm &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/search_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="8dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/header">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_search_voucher"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:hint="Tìm kiếm theo mã voucher"-->
+<!--            android:background="#E5E5E5"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_search_voucher"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Tìm kiếm"-->
+<!--            android:background="#4CAF50"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginStart="8dp" />-->
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash; Danh sách voucher &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_vouchers"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/search_bar"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/input_section"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginHorizontal="16dp" />-->
+
+<!--    &lt;!&ndash; Trường nhập liệu và nút hành động &ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:id="@+id/input_section"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="16dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_voucher_code"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Mã voucher"-->
+<!--            android:background="#E5E5E5"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginBottom="8dp" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_voucher_discount"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Giá trị giảm"-->
+<!--            android:inputType="number"-->
+<!--            android:background="#E5E5E5"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginBottom="8dp" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/et_voucher_expiration"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Ngày hết hạn (YYYY-MM-DD)"-->
+<!--            android:background="#E5E5E5"-->
+<!--            android:padding="10dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginBottom="8dp" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_update_voucher"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Cập nhật"-->
+<!--                android:background="#4CAF50"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="14sp"-->
+<!--                android:layout_marginEnd="8dp" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_delete_voucher"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Xóa"-->
+<!--                android:background="#F44336"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="14sp" />-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
