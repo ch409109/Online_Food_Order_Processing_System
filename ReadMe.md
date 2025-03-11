@@ -5,3 +5,5 @@ B3: check trong Android -> gradle-wrapper.properties xem đã đúng phiên bả
 B4: mở terminal ở góc bên trái dưới, chạy lệnh "gradlew.bat build"
 B5: kiểm tra ở file build.gradle (Module app), check compileSdk có phải 35 k, nếu không phải thì đổi thành 35
 B6: chạy project
+
+Hello
