@@ -12,17 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PRM392_FINAL_PROJECT"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".ui.activity.VoucherActivity"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".ui.activity.SearchVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.DeleteVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.EditVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.AddVoucherActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.VoucherManagerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="false">
         </activity>
     </application>
 

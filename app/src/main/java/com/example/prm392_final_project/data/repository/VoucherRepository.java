@@ -2,6 +2,7 @@ package com.example.prm392_final_project.data.repository;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.example.prm392_final_project.data.database.DatabaseHelper;
 import com.example.prm392_final_project.data.model.Voucher;
@@ -11,6 +12,19 @@ public class VoucherRepository {
 
     public VoucherRepository(Context context) {
         dbHelper = new DatabaseHelper(context);
+    }
+
+    public boolean isVoucherCodeExists(String code, int excludeVoucherId) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM Vouchers WHERE Code = ? AND Id != ?";
+        Cursor cursor = db.rawQuery(query, new String[]{code, String.valueOf(excludeVoucherId)});
+        boolean exists = false;
+        if (cursor != null && cursor.moveToFirst()) {
+            exists = cursor.getInt(0) > 0;
+            cursor.close();
+        }
+        db.close();
+        return exists;
     }
 
     public long insertVoucher(String code, int discountPercentage, String expirationDate, int createdBy) {

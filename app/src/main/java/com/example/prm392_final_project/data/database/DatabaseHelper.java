@@ -341,8 +341,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor searchVouchers(String searchQuery) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM Vouchers WHERE Code = ?";
-        return db.rawQuery(query, new String[]{searchQuery});
+        String query;
+        String[] selectionArgs;
+        if (isNumeric(searchQuery)) {
+            int discount = Integer.parseInt(searchQuery);
+            query = "SELECT * FROM Vouchers WHERE Code LIKE ? OR DiscountPercentage = ?";
+            selectionArgs = new String[]{"%" + searchQuery + "%", String.valueOf(discount)};
+        } else {
+            query = "SELECT * FROM Vouchers WHERE Code LIKE ?";
+            selectionArgs = new String[]{"%" + searchQuery + "%"};
+        }
+        return db.rawQuery(query, selectionArgs);
+    }
+
+    private boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     private String getCurrentTimestamp() {
