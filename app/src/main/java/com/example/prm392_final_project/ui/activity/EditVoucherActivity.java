@@ -114,7 +114,6 @@ public class EditVoucherActivity extends AppCompatActivity {
         String discountStr = etDiscountValue.getText().toString().trim();
         String expirationDate = etExpirationDate.getText().toString().trim();
 
-        // Validation
         if (code.isEmpty() || discountStr.isEmpty() || expirationDate.isEmpty()) {
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             return;
@@ -131,7 +130,7 @@ public class EditVoucherActivity extends AppCompatActivity {
         }
 
         try {
-            double discountPercentage = Double.parseDouble(discountStr);
+            int discountPercentage = Integer.parseInt(discountStr);
             String formattedExpirationDate = expirationDate + " 23:59:59";
 
             if (voucherRepository.isVoucherCodeExists(code, voucherId)) {

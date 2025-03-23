@@ -127,7 +127,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void seedSampleData(SQLiteDatabase db) {
-        // 1. Seed bảng Users
         ContentValues user1 = new ContentValues();
         user1.put("Username", "conghthe172673");
         user1.put("Email", "conghthe172673@fpt.edu.vn");
@@ -168,7 +167,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         user4.put("Role", "customer");
         db.insert("Users", null, user4);
 
-        // 2. Seed bảng Foods
         ContentValues food1 = new ContentValues();
         food1.put("Name", "Phở Bò");
         food1.put("Description", "Món phở truyền thống với thịt bò.");
@@ -185,7 +183,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         food2.put("ImageUrl", "url_to_banh_mi_image");
         db.insert("Foods", null, food2);
 
-        // 3. Seed bảng Orders (tham chiếu UserId)
         ContentValues order1 = new ContentValues();
         order1.put("UserId", 1); // john_doe
         order1.put("Status", "Đang xử lý");
@@ -202,7 +199,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         order2.put("PaymentMethod", "Thẻ tín dụng");
         db.insert("Orders", null, order2);
 
-        // 4. Seed bảng OrderItems (tham chiếu OrderId và FoodId)
         ContentValues orderItem1 = new ContentValues();
         orderItem1.put("OrderId", 1);
         orderItem1.put("FoodId", 1); // Phở Bò
@@ -217,7 +213,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         orderItem2.put("Price", 25000);
         db.insert("OrderItems", null, orderItem2);
 
-        // 5. Seed bảng Vouchers (tham chiếu CreatedBy)
         ContentValues voucher1 = new ContentValues();
         voucher1.put("Code", "DISCOUNT10");
         voucher1.put("DiscountPercentage", 10);
@@ -243,7 +238,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         notification2.put("Message", "Giảm giá 20% cho đơn hàng tiếp theo.");
         db.insert("Notifications", null, notification2);
 
-        // 7. Seed bảng Reviews (tham chiếu UserId và FoodId)
         ContentValues review1 = new ContentValues();
         review1.put("UserId", 1); // john_doe
         review1.put("FoodId", 1); // Phở Bò
@@ -258,7 +252,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         review2.put("Feedback", "Ngon nhưng hơi ít thịt.");
         db.insert("Reviews", null, review2);
 
-        // 8. Seed bảng CartItems (tham chiếu UserId và FoodId)
         ContentValues cartItem1 = new ContentValues();
         cartItem1.put("UserId", 1); // john_doe
         cartItem1.put("FoodId", 1); // Phở Bò
@@ -271,7 +264,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cartItem2.put("Quantity", 1);
         db.insert("CartItems", null, cartItem2);
 
-        // 9. Seed bảng OTPs (tham chiếu UserId)
         ContentValues otp1 = new ContentValues();
         otp1.put("UserId", 1); // john_doe
         otp1.put("OtpCode", "123456");
@@ -299,72 +291,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS CartItems");
         db.execSQL("DROP TABLE IF EXISTS OTPs");
         onCreate(db);
-    }
-
-    public long insertVoucher(String code, int discountPercentage, String expirationDate, int createdBy) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("Code", code);
-        values.put("DiscountPercentage", discountPercentage);
-        values.put("ExpirationDate", expirationDate);
-        values.put("CreatedBy", createdBy);
-        long id = db.insert("Vouchers", null, values);
-        db.close();
-        return id;
-    }
-
-    public Cursor getAllVouchers() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM Vouchers", null);
-    }
-
-    public Cursor getVoucherById(int voucherId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM Vouchers WHERE Id = ?";
-        return db.rawQuery(query, new String[]{String.valueOf(voucherId)});
-    }
-
-    public int updateVoucher(int voucherId, String code, double discountPercentage, String expirationDate) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("Code", code);
-        values.put("DiscountPercentage", discountPercentage);
-        values.put("ExpirationDate", expirationDate);
-        values.put("UpdatedAt", getCurrentTimestamp()); // Cập nhật thời gian chỉnh sửa
-        return db.update("Vouchers", values, "Id = ?", new String[]{String.valueOf(voucherId)});
-    }
-
-    public int deleteVoucher(int voucherId) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete("Vouchers", "Id = ?", new String[]{String.valueOf(voucherId)});
-    }
-
-    public Cursor searchVouchers(String searchQuery) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query;
-        String[] selectionArgs;
-        if (isNumeric(searchQuery)) {
-            int discount = Integer.parseInt(searchQuery);
-            query = "SELECT * FROM Vouchers WHERE Code LIKE ? OR DiscountPercentage = ?";
-            selectionArgs = new String[]{"%" + searchQuery + "%", String.valueOf(discount)};
-        } else {
-            query = "SELECT * FROM Vouchers WHERE Code LIKE ?";
-            selectionArgs = new String[]{"%" + searchQuery + "%"};
-        }
-        return db.rawQuery(query, selectionArgs);
-    }
-
-    private boolean isNumeric(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private String getCurrentTimestamp() {
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
-        return sdf.format(new java.util.Date());
     }
 }
